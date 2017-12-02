@@ -4,8 +4,6 @@ author: "Oindrila Sen"
 date: "November,20, 2017"
 output:
   html_document:
-    self_contained: false
-    lib_dir: libs
     df_print: paged
     highlight: tango
     number_sections: yes
