@@ -347,6 +347,8 @@ ggplot(clean_listing, aes(x = price)) +
   scale_y_continuous(limits = c(0, 6000), breaks = seq(0, 6000, 500))+
   ggtitle("Price Trends for Airbnb Listings in LA") 
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-25-1.png)
+
 <br>
 **Conclusion:** It looks like most of the Airbnb properties in LA are in the range of 50 - 120 dollars per night. There are only a few listing in higher price range. 
 <br> <br>
@@ -359,6 +361,8 @@ table(clean_listing$property_type, clean_listing$room_type)
 ggplot(clean_listing, aes(x=property_type,fill=room_type)) +
   geom_bar(na.rm = TRUE)
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-26-1.png)
+
 <br>
 **Conclusion:** For Airbnb, people usually rent out their entire home or entire apartment or even a private room in their house.Also, it is observed here that entire home or a private room is more in demand than a shared accomodation which is really understandable.
 <br><br>
@@ -369,7 +373,10 @@ Let's see what types of beds are mostly used in Airbnbs.
 ggplot(clean_listing, aes(x = bed_type)) +
   geom_bar(fill = 'light green', na.rm = TRUE)
 ```
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-27-1.png)
 <br>
+
 **Conclusion:** Though the concept of Airbnb starterd with Airbeds, it looks like Real Reds are much more popular nowadays.
 <br><br>
 **4.Cancellation_policy:**     
@@ -379,7 +386,10 @@ Let's see what cancellation policy are more appropriate for an Airbnb in LA.
 ggplot(clean_listing, aes(x = cancellation_policy)) +
   geom_bar(fill = 'blue', na.rm = TRUE)
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-28-1.png)
+
 <br>
+
 **Conclusion:** Hosts are usually strict regarding any cancellation which is quite natural because a cancellation means some loss in business.
 <br><br>
 **5. Host_is_superhost:**    
@@ -390,7 +400,10 @@ prop.table(table(clean_listing$host_is_superhost))
 ggplot(clean_listing, aes(x = host_is_superhost)) +
   geom_bar(fill = 'light yellow')
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-29-1.png)
+
 <br>
+
 **Conclusion:** Only 20% of the hosts in LA are identified as a "Super" host.
 <br><br>
 **6. Host_identity_verified:**    
@@ -401,7 +414,10 @@ prop.table(table(clean_listing$host_identity_verified))
 ggplot(clean_listing, aes(x = host_identity_verified)) +
   geom_bar(fill = 'light blue')
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-30-1.png)
+
 <br>
+
 **Conclusion:** 70% of the host's identity is verified in LA and still there are 30% of the hosts whose identity is not yet verified and that's alarming.
 <br><br>
 **7. Instant_bookable:**    
@@ -412,7 +428,11 @@ prop.table(table(clean_listing$instant_bookable))
 ggplot(clean_listing, aes(x = instant_bookable)) +
   geom_bar(fill = 'light green')
 ```
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-31-1.png)
+
 <br>
+
 **Conclusion:** Instant_booking is NOT opted by most of the hosts yet.But this feature can attract more guests since it can save some time.
 <br><br>
 **8. has_monthly_discount:**  
@@ -422,6 +442,9 @@ prop.table(table(clean_listing$has_monthly_discount))
 ggplot(clean_listing, aes(x = has_monthly_discount)) +
   geom_bar(fill = 'light blue')
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-32-1.png)
+
+
 <br>
 Most of the host is not providing any monthly discount and it's unlikely to book a listing for a month.
 <br><br>
@@ -432,7 +455,11 @@ prop.table(table(clean_listing$has_weekly_discount))
 ggplot(clean_listing, aes(x = has_weekly_discount)) +
   geom_bar(fill = 'light blue')
 ```
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-33-1.png)
+
 <br>
+
 Again, weekly discount is also not available for most of the listings.
 <br> <br>
 
@@ -448,7 +475,11 @@ ggplot(clean_listing, aes(x = number_of_reviews, y = price)) +
     scale_x_continuous(limits = c(0, 600), breaks = seq(0, 600, 100))
 
 ```
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-34-1.png)
+
 <br>
+
 It looks like usually the less price listings has more reviews which is expected since people usually look for some budget friendly properties.
 <br><br>
 2. Plot price vs bedrooms  
@@ -460,6 +491,9 @@ ggplot(clean_listing, aes(x = factor(bedrooms), y = price)) +
   ylim(50, 500)
 ```
 <br>
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-35-1.png)
+
 As per the above plot results, the price for the listings with more bedrooms are usually more. That means a 1 bedroom apartment is less price than a 3 bedroom apartment and the result is as expected.
 <br><br>
 3. Plot price vs bathrooms  
@@ -470,7 +504,10 @@ ggplot(clean_listing, aes(x = factor(bathrooms), y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(50, 500)
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-36-1.png)
+
 <br>
+
 Again,as per the above plot results, the price for the listings with more bathrooms are usually more. That means a 2 bedroom apartment with 1 bath is less price than a 2 bedroom apartment with 2 baths and the result is as expected.
 <br><br>
 4. Plot price vs cancellation_policy  
@@ -481,6 +518,8 @@ ggplot(clean_listing, aes(x = cancellation_policy, y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(50, 500)
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-37-1.png)
+
 <br>
 Cancellation Policy does not influence the price much.So, a host can select a strict cancellation policy and choose the same price as a listing with a flexible cancellation policy.
 <br><br>
@@ -492,7 +531,10 @@ Cancellation Policy does not influence the price much.So, a host can select a st
   geom_boxplot(na.rm = TRUE) +
   ylim(00, 500)
 ```
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-38-1.png)
+
 <br>
+
 As per the plot, the Mean price for each property type is at the range of  $100 per night and the property type does not have a great influence on price.
 <br><br>
 6. Plot price vs room_type  
@@ -503,7 +545,9 @@ ggplot(clean_listing, aes(x = room_type, y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(00, 500)
 ```
-<br>
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-39-1.png)
+
+
 As per the plot, shared room has the least Mean price. The private rooms have a little higher Mean price than a shared accomodation, but quite less than the entire home. The entire home shows a lot more variation
 on average than a private room or a shared accomodation.
 <br><br>
@@ -515,7 +559,9 @@ ggplot(clean_listing, aes(x = bed_type, y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(00, 500)
 ```
-<br> 
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-40-1.png)
+
+
 The price is not much influenced by what type of Bed is there.Real Beds has a slightly more Mean price than any other types.
 <br><br>
 8. Plot Price vs No. of Beds
@@ -525,7 +571,9 @@ ggplot(clean_listing, aes(x = factor(beds), y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(0, 500)
 ```
-<br>
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-41-1.png)
+
+
 As per the plot, it looks like with an increase in number of beds, the price is increasing. But then, there is a little drop in price for beds number equal to 8 or 10 or 16.
 <br><br>
 9. Plot price vs accomodates
@@ -536,7 +584,8 @@ ggplot(clean_listing, aes(x = factor(accommodates), y = price)) +
   geom_boxplot(na.rm = TRUE) +
   ylim(0, 500)
 ```
-<br>
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-42-1.png)
+
 As per the plot, the price is increasing with an increase in the number of accomodates the host does allow for a listing.
 <br><br>
 
@@ -547,7 +596,9 @@ ggplot(clean_listing, aes(x = good_host_response, y = price)) +
   geom_bar(fill = 'light blue',na.rm = TRUE, stat = "identity") +
   scale_y_continuous(limits = c(0, 500), breaks = seq(0, 500, 50))
 ```
-<br>
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-43-1.png)
+
+
 Apparently, host with better response can claim better price for their listing.  
 
 # Create a Model 
@@ -583,6 +634,14 @@ summary(lm_model)
 plot(lm_model)
 ```
 <br><br>
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-1.png)
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-2.png)
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-3.png)
+
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-4.png)
+
 Let's check the accuracy of this model.
 <br>
 ```{r}
