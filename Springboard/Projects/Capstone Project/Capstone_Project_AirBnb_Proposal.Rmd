@@ -1,9 +1,11 @@
 ---
-title: Airbnb-To understad how the different features of a listing in LA  can influence the price
+title: Airbnb-To understand how the different features of a listing in LA  can influence the price
 author: "Oindrila Sen"
 date: "November,20, 2017"
 output:
   html_document:
+    self_contained: false
+    lib_dir: libs
     df_print: paged
     highlight: tango
     number_sections: yes
