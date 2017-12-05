@@ -1,8 +1,4 @@
 Airbnb-To understand how the different features of a listing in LA  can influence
-# Table of Contents
-1. [Prologue](#Prologue)
-2. [Problem Setup](#Problem Setup)
-3. [Potential client](#Potential client)
 ---
 # Prologue
 *"Airbnb happened because two guys could not pay their rent, but did have some space."* 
