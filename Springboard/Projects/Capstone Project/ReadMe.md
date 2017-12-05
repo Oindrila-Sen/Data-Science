@@ -1,4 +1,8 @@
 Airbnb-To understand how the different features of a listing in LA  can influence
+# Table of Contents
+1. [Prologue](#Prologue)
+2. [Problem Setup](#Problem Setup)
+3. [Potential client](#Potential client)
 ---
 # Prologue
 *"Airbnb happened because two guys could not pay their rent, but did have some space."* 
@@ -631,16 +635,8 @@ lm_model <-
     data = train_data
   )
 summary(lm_model)
-plot(lm_model)
 ```
-<br><br>
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-1.png)
-
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-2.png)
-
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-3.png)
-
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-46-4.png)
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-43-1.png)
 
 Let's check the accuracy of this model.
 <br>
