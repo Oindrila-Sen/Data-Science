@@ -669,8 +669,7 @@ Now, let's understand how the different features are related to the Price.
 ```{r}
 coefficients(lm_model)
 ```
-
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/Coeff.png)
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/coeff.png)
 
 
 The below features have a **Positive** relation with price. i.e. while selecting a price for a new listing in LA, we can conclude that if the host is a "Super Host", he can ask for a better price. Or, a house with more bedrooms and bathrooms (a bigger house) that accomodates more people can get better price. 
