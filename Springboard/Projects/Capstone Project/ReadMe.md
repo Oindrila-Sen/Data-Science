@@ -636,7 +636,7 @@ lm_model <-
   )
 summary(lm_model)
 ```
-![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/unnamed-chunk-43-1.png)
+![Alt text](Capstone_Project_AirBnb_Proposal_files/figure-html/Coefficients.png)
 
 Let's check the accuracy of this model.
 <br>
