@@ -61,12 +61,12 @@ for (col in to_factor) {
 }
 ```
 2. Check for NA records:
-Before proceeding further, let's find out which variables have NA values.
+Before proceeding any further, let's find out which variables have NA values.
 ```{r}
 # check for NA values
 sapply(titanic_clean, function(x) sum(is.na(x)))
 ```
-Now, we will replace the NA value for each variable with some meaningful value.
+Now, we will replace the NA value for each variable with some meaningful values.
 * Age: First, let's convert the Age variable to Integer and replace the NA values with the Mean of the Age data.
 ```{r}
 # Convert Age column to Numeric
@@ -74,7 +74,7 @@ titanic_clean$Age <- as.integer((titanic_clean$Age))
 # Relace NA values for Age with the mean
 titanic_clean$Age[is.na(titanic_clean$Age)] <- mean(titanic_clean$Age,na.rm = TRUE)
 ```
-* Cabin#:There are a couple of records where the Cabin# is not populated. Let's replace those records with "None"
+* Cabin#:There are a couple of records where the Cabin# is not populated. Let's replace those records with "None".
 ```{r}
 # Replace Cabin# with None for NA records
 titanic_clean$Cabin[is.na(titanic_clean$Cabin)] <- "None"
@@ -98,7 +98,7 @@ Let's check again for NA records.
 # Again check for NA values
 sapply(titanic_clean, function(x) sum(is.na(x)))
 ```
-3. Let's change the value for a few variables with some meaningful data.
+3. Let's add a meaning to the data.
 ```{r}
 # Change the levels to meaningful values
 # 1. Pclass
@@ -150,7 +150,7 @@ ggplot(titanic_clean, aes(x = Pclass)) +
   scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Class vs Total Passengers") 
 ```
-It looks like most of the passengers were travelling in the 3rd Class. 1st class passengers count was a little more than that of the 2nd Class.
+It looks like most of the passengers were travelling in the 3rd Class. But,1st class passengers count was a little more than that of the 2nd Class.
 
 2. Sex vs Total Passengers
 ```{r}
@@ -160,7 +160,7 @@ ggplot(titanic_clean, aes(x = Sex)) +
     scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Sex vs Total Passengers") 
 ```
-Around 65% of the passengers are Male and 35% are Female. 
+Around 65% of the passengers were Male and only 35% were Female. 
 
 3. Embarked vs Total Passengers:
 ```{r}
@@ -178,7 +178,7 @@ ggplot(titanic_clean, aes(x = Age_Group)) +
     scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Age_Group vs Total Passengers") 
 ```
-Most of the passenegrs were Adult which is obvious. But, there were a few babies and kids.
+Most of the passenegrs were Adult which is obvious. But, there were a few babies and kids too.
 
 5. Fare_Group vs Total Passengers
 ```{r}
@@ -187,7 +187,7 @@ ggplot(titanic_clean, aes(x = Fare_Group)) +
     scale_y_continuous(limits = c(0,1000), breaks = seq(0,1000,100))
   ggtitle("Fare_Group vs Total Passengers") 
 ```
-Most of the passengers are in the "Low" Fare group. It tallys with the Data where we have seen that most of the passengers are in 3rd Class.
+Most of the passengers were in the "Low" Fare group. It tallys with the Data where we have seen before that most of the passengers were in the 3rd Class.
 
 6. with_family vs Total Passengers
 ```{r}
@@ -200,6 +200,7 @@ ggplot(titanic_clean, aes(x = with_family)) +
 ```
 It looks like 60% of the passengers were travelling alone and 30% were with a Family.
 
+7. Kids tarvelling alone?
 ```{r}
   table(titanic_clean$with_family, titanic_clean$Age_Group)
    kids_without_family<-
@@ -208,3 +209,97 @@ It looks like 60% of the passengers were travelling alone and 30% were with a Fa
   
   kids_without_family
 ```
+That's strange! 3 kids were travelling alone? Where were their parents or Guardians?
+
+Now, let's explore the survival rates. For this, we would need the records with a value in Survived column. So, let's divide the current Dataset as before.
+```{r}
+set.seed(550)
+titanic_train <- titanic_clean[1:891,]
+titanic_test <- titanic_clean[892:1309,]
+```
+8. Age_group vs Survived
+```{r}
+table(titanic_train$Survived,titanic_train$Age_Group)
+ggplot(titanic_train, aes(Age_Group, ..count..)) + 
+geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
+  ```
+There were mostly Adults in that ship and many Adults did not make it. But what's sad is that there were 10 Babies and 19   Kids who did not survived.
+
+9. Sex Vs Survived
+
+```{r}
+table(titanic_train$Survived,titanic_train$Sex)
+ggplot(titanic_train, aes(Sex, ..count..)) + 
+  geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
+```
+It looks like the Female passengers survived more than the Male passengers.
+
+10. With_Family vs Survived
+```{r}
+table(titanic_train$Survived,titanic_train$with_family)
+ggplot(titanic_train, aes(with_family, ..count..)) + 
+  geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
+  ```
+  The passengers with Family were less. But, it looks like that the survival rate for the passengers with family was most likely. Does that sound logical? Ohh yes!
+  
+  11. Fare_Group Vs Survived
+  ```{r}
+prop.table(table(titanic_train$Survived,titanic_train$Fare_Group))
+ggplot(titanic_train, aes(Fare_Group, ..count..)) + 
+  geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
+  ```
+It looks like the passengers with high fare had more survival probability. The passengers with Medium Fare had a 50:50 chance. The Lowest Fare group were the victims.
+
+**After seeing all these results, I really want to find out, what was my chance of survival, if I had boarded that Ship?
+
+Since, it is a hypothetical situation, Let's go back 20 years of my life when I first asked that question.So, 20 years back, I was a Teenager and I wold have travelled with my parents and my sister.
+
+```{r}
+my_chances <-
+  titanic_train %>%
+  filter(Sex=="female",
+         Age_Group == "Teen",
+         Parch >0 ,
+         SibSp >0 
+         )
+prop.table(table(my_chances$Survived))
+```
+Phew! It looks like I had a 75% chance to survive! 
+
+# Create a Model
+
+Since I am new to Data Science or Machine Learning, I am not much aware of many Models that I should use in this kind of situations. As per my knowledge, to predict a categorical variable, we can use a Logistic Regression Model and here it is.
+
+```{r}
+######################################
+# 5. Create a Model
+######################################
+lm_survival_model <- glm(Survived ~ Pclass+Sex+
+                                    Age+SibSp+Parch
+                           +with_family+Age_Group,
+                           data = titanic_train,
+                           family = binomial(link=logit)
+)
+
+summary(lm_survival_model)
+```
+Now, let's use this model to predict the Survived column value for our Test DataSet.
+```{r}
+# Prediction
+predict_survival <- round(predict(lm_survival_model,
+                                  titanic_test,type =  "response"))
+titanic_test$Survived <- predict_survival
+table(titanic_test$Survived)
+```
+Well, my Model says that 63% of the Test data passengers did not survived and only 37% did survived.
+
+```{r}
+# Write the Final Solution
+final_solution <- titanic_test%>%
+                  select(PassengerId,Survived)
+write.csv(final_solution, 
+          file = "final_solution.csv")
+```
+That's all I have today!
+Thank You for reading!
+                                  ***The End***
