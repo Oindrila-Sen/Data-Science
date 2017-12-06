@@ -1,23 +1,11 @@
 ---
-title: "Titanic - What would have been my probability of survival if I had boarded that ship?"
-author: "Oindrila Sen"
-date: "12/6/2017"
-output: 
-  html_document: 
-    highlight: tango
-    theme: journal
-    self_contained: false
-    df_print: paged
-    lib_dir: libs
-    number_sections: yes
-    toc: yes
-    toc_float: yes
+Title: "Titanic - What would have been my probability of survival if I had boarded that ship?"
 ---
-#Introduction
+# Introduction
 
-I was in my teens when I first came to know about Titanic.I sat in between my parents in the Movie Theatre, for the first time, to watch a Hollywood Blockbuster. I was mesmerized by the grandeur, the emotions, and the sadness. For the first time, I realized a ship named "Titanic" actually started sailing in 1912 and never returned. I imagined myself in that ship on my way back home from the Theatre and even for the following days. 
+I was in my teens when I first came to know about Titanic.I sat in between my parents in the Movie Theatre, for the first time, to watch a Hollywood Blockbuster. I was mesmerized by the grandeur, the emotions, and the sadness. For the first time, I realized a ship named "Titanic" actually started sailing in 1912 and never returned. I imagined myself in that ship, on my way back home from the Theatre and even for the following days. 
 
-After 20 years of that unforgettable experience, I got a chance to re-live that feeling. My first Kaggle entry is the Titanic Dataset where I would explore if I had boarded the ship, what would have been my chances of survival?
+After 20 years of that unforgettable experience, I got a chance to re-live that experience. My first Kaggle entry is the Titanic Dataset where I would explore if I had boarded the ship, what would have been my chances of survival?
 
 Let's Load the data and start digging!
 
@@ -49,6 +37,7 @@ titanic_clean <- rbind(titanic_train,titanic_test)
 
 # Take a look at the data
 dim(titanic_train) # 891,12
+
 dim(titanic_test) # 418, 11
 glimpse(titanic_clean) # 1309, 12
 ```
