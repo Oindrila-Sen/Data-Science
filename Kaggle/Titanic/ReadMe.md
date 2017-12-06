@@ -34,13 +34,22 @@ titanic_test<-read.csv("test.csv",
 # Add column Survived in Test DataSet
 titanic_test$Survived <- NA
 titanic_clean <- rbind(titanic_train,titanic_test)
-
-# Take a look at the data
+```
+Now, Let's take a look at the data.
+```{r}
 dim(titanic_train) # 891,12
+```
+![Alt text](Titanic_files/figure-html/1.png)
 
+```{r}
 dim(titanic_test) # 418, 11
+```
+![Alt text](Titanic_files/figure-html/2.png)
+
+```{r}
 glimpse(titanic_clean) # 1309, 12
 ```
+![Alt text](Titanic_files/figure-html/3.png)
 
 # Data Wrangling & Cleaning
 
@@ -50,6 +59,16 @@ First let's see which variables are more likely to be a Factor and then convert 
 ```{r}
 # Check which variables are Factors
 sapply(titanic_clean, function(x) length(unique(x)))
+```
+![Alt text](Titanic_files/figure-html/4.png)
+
+We will transform the below variables to Factors:
+1. Survived
+2. Pclass
+3. Sex
+4. Embarked
+
+```{r}
 # Transforming categorical Variables to factors:
 to_factor <- c(
   'Survived',
@@ -68,6 +87,8 @@ Before proceeding any further, let's find out which variables have NA values.
 # check for NA values
 sapply(titanic_clean, function(x) sum(is.na(x)))
 ```
+![Alt text](Titanic_files/figure-html/5.png)
+
 Now, we will replace the NA value for each variable with some meaningful values.
 
 * Age: First, let's convert the Age variable to Integer and replace the NA values with the Mean of the Age data.
@@ -101,6 +122,8 @@ Let's check again for NA records.
 # Again check for NA values
 sapply(titanic_clean, function(x) sum(is.na(x)))
 ```
+![Alt text](Titanic_files/figure-html/6.png)
+
 3. #### Add meaning to the data:
 ```{r}
 # Change the levels to meaningful values
@@ -156,16 +179,24 @@ ggplot(titanic_clean, aes(x = Pclass)) +
   scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Class vs Total Passengers") 
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-13-1.png)
+
 It looks like most of the passengers were travelling in the 3rd Class. But,1st class passengers count was a little more than that of the 2nd Class.
 
 #### 2.Sex vs Total Passengers
 ```{r}
 prop.table((table(titanic_clean$Sex)))
+```
+![Alt text](Titanic_files/figure-html/13.png)
+
+```{r}
 ggplot(titanic_clean, aes(x = Sex)) +
     geom_bar(fill= "light blue")+
     scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Sex vs Total Passengers") 
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-14-1.png)
+
 Around 65% of the passengers were Male and only 35% were Female. 
 
 #### 3.Embarked vs Total Passengers:
@@ -175,6 +206,8 @@ ggplot(titanic_clean, aes(x = Embarked)) +
     scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Embarked vs Total Passengers") 
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-15-1.png)
+
 Most of the Passengers boarded the ship at South Hampton. Around 250 passenegrs boarded at Cherbourg and around 120 boarded at Queenstown.
 
 #### 4.Age_Group vs Total Passengers
@@ -184,6 +217,8 @@ ggplot(titanic_clean, aes(x = Age_Group)) +
     scale_y_continuous(limits = c(0,1400), breaks = seq(0,1400,100))
   ggtitle("Age_Group vs Total Passengers") 
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-16-1.png)
+
 Most of the passenegrs were Adult which is obvious. But, there were a few babies and kids too.
 
 #### 5.Fare_Group vs Total Passengers
@@ -193,22 +228,33 @@ ggplot(titanic_clean, aes(x = Fare_Group)) +
     scale_y_continuous(limits = c(0,1000), breaks = seq(0,1000,100))
   ggtitle("Fare_Group vs Total Passengers") 
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-17-1.png)
+
 Most of the passengers were in the "Low" Fare group. It tallys with the Data where we have seen before that most of the passengers were in the 3rd Class.
 
 #### 6.with_family vs Total Passengers
 ```{r}
 prop.table(table(titanic_clean$with_family))
+```
+![Alt text](Titanic_files/figure-html/10.png)
 
+```{r}
 ggplot(titanic_clean, aes(x = with_family)) +
     geom_bar(fill= "light blue")+
     scale_y_continuous(limits = c(0,1000), breaks = seq(0,1000,100))
   ggtitle("with_family vs Total Passengers")   
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-18-1.png)
+
 It looks like 60% of the passengers were travelling alone and 30% were with a Family.
 
 #### 7.Kids tarvelling alone?!
 ```{r}
   table(titanic_clean$with_family, titanic_clean$Age_Group)
+  ```
+  ![Alt text](Titanic_files/figure-html/9.png)
+  
+  ```{r}
    kids_without_family<-
     titanic_clean%>%
     filter(with_family=="no",Age_Group=="Kid")
@@ -229,6 +275,8 @@ table(titanic_train$Survived,titanic_train$Age_Group)
 ggplot(titanic_train, aes(Age_Group, ..count..)) + 
 geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
   ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-21-1.png)
+
 There were mostly Adults in that ship and many Adults did not make it. But what's sad is that there were 10 Babies and 19   Kids who did not survived.
 
 #### 9.Sex Vs Survived
@@ -238,6 +286,8 @@ table(titanic_train$Survived,titanic_train$Sex)
 ggplot(titanic_train, aes(Sex, ..count..)) + 
   geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
 ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-22-1.png)
+
 It looks like the Female passengers survived more than the Male passengers.
 
 #### 10.With_Family vs Survived
@@ -246,6 +296,8 @@ table(titanic_train$Survived,titanic_train$with_family)
 ggplot(titanic_train, aes(with_family, ..count..)) + 
   geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
   ```
+  ![Alt text](Titanic_files/figure-html/unnamed-chunk-23-1.png)
+  
   The passengers with Family were less. But, it looks like that the survival rate for the passengers with family was most likely. Does that sound logical? Ohh yes!
   
  #### 11.Fare_Group Vs Survived
@@ -255,6 +307,8 @@ prop.table(table(titanic_train$Survived,titanic_train$Fare_Group))
 ggplot(titanic_train, aes(Fare_Group, ..count..)) + 
   geom_bar(aes(fill = Survived), position = "dodge", na.rm = FALSE)
   ```
+![Alt text](Titanic_files/figure-html/unnamed-chunk-24-1.png)
+
 It looks like the passengers with high fare had more survival probability. The passengers with Medium Fare had a 50:50 chance. The Lowest Fare group were the victims.
 
 #### After seeing all these results, I really want to find out, what was my chance of survival, if I had boarded that Ship?
@@ -271,6 +325,8 @@ my_chances <-
          )
 prop.table(table(my_chances$Survived))
 ```
+![Alt text](Titanic_files/figure-html/11.png)
+
 #### Phew! It looks like I had a 75% chance to survive! 
 
 # Create a Model
@@ -290,6 +346,8 @@ lm_survival_model <- glm(Survived ~ Pclass+Sex+
 
 summary(lm_survival_model)
 ```
+![Alt text](Titanic_files/figure-html/12.png)
+
 Now, let's use this model to predict the Survived column value for our Test DataSet.
 ```{r}
 # Prediction
@@ -298,6 +356,8 @@ predict_survival <- round(predict(lm_survival_model,
 titanic_test$Survived <- predict_survival
 table(titanic_test$Survived)
 ```
+![Alt text](Titanic_files/figure-html/14.png)
+
 #### Well, my Model says that 63% of the Test data passengers did not survived and only 37% did survived.That's a Sad result!
 
 ```{r}
