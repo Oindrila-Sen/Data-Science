@@ -21,7 +21,7 @@ price_test<-read.csv("test.csv",
                      #,na.strings = "",
                      #stringsAsFactors = FALSE
 )
-price_test$SalePrice <- NA
+price_test$SalePrice <- 0
 # Merge Train and Test Dataset
 price_clean <- rbind(price_train, price_test)
 
@@ -180,6 +180,8 @@ price_clean$has_pool <- ifelse(price_clean$PoolQC == 'Np',1,0)
 # has_fence
 price_clean$has_fence <- ifelse(price_clean$Fence == 'No Fence',1,0)
 
+dim(price_clean)
+
 #select variables that be used for model buidling and heat map
 model_var <- c('Id','SalePrice' ,'MSSubClass','MSZoning','Street',
                'Alley','reg_shape','Utilities','Condition1','Condition2',
@@ -319,4 +321,4 @@ write.csv(solution_gbm,
 ##########################################################
 head(solution_lm)
 head(solution_rf)
-glimpse(solution_gbm)
+head(solution_gbm)
