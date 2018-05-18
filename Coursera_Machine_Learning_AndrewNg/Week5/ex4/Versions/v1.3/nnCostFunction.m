@@ -108,7 +108,13 @@ Theta2_grad = zeros(size(Theta2));
 %  Theta1, Delta1 and Theta1grad: 25x401
 %  Theta2, Delta2 and Theta2grad: 10x26
 
-% Step -1 FeedForward - Done Above
+a1 = [ones(m,1), X];
+z2 = a1 * Theta1' ;
+a2 = sigmoid(z2);
+a2 = [ones(m,1), a2];
+z3 = a2 * Theta2' ;
+a3 = sigmoid(z3);
+
 % Step -2 For Output Layer
 
 d3 = a3 - y_matrix;
