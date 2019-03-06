@@ -3,7 +3,7 @@ stdin <- file('input')
 open(stdin)
 #input <- suppressWarnings(read.delim(stdin,stringsAsFactors = FALSE))
 #input <- readLines(stdin,  warn=FALSE)
-input <- suppressWarnings(read.table(stdin, sep=" ",stringsAsFactors = FALSE));
+input <- suppressWarnings(read.table(stdin, sep=" ",stringsAsFactors = FALSE))
 close(stdin)
 #cat(class(input))
 #cat(str(input))
